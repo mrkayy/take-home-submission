@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_home/routes.dart';
 import 'package:take_home/theme/light_theme.dart';
 
 void main() {
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       builder: (_, __) => MaterialApp.router(
         title: 'Homes',
-        theme: ThemeHelper.light,
+        routerConfig: AppRoutes().getRoutesConfig,
+        theme: theme,
         // home: const DashboardPage(),
       ),
     );
