@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:take_home/presentation/screens/404_page.dart';
-import 'package:take_home/presentation/screens/home_sliver_pg.dart';
-import 'package:take_home/presentation/screens/search_pg.dart';
+import 'package:take_home/presentation/screens/home_page.dart';
+import 'package:take_home/presentation/screens/search_page.dart';
 import 'package:take_home/presentation/tab_navigation_screen.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
@@ -14,6 +14,8 @@ GlobalKey<NavigatorState> get navigatorKey => _rootNavigatorKey;
 enum NavRoutes {
   homepage('/'),
   notfound('/not_found'),
+  notfoundOne('/not_found_one'),
+  notfoundTwo('/not_found_two'),
   searchPage('/search_page');
 
   const NavRoutes(this.path);
@@ -75,7 +77,7 @@ class AppRoutes {
           StatefulShellBranch(
             routes: <RouteBase>[
               GoRoute(
-                path: NavRoutes.notfound.path,
+                path: NavRoutes.notfoundOne.path,
                 builder: (BuildContext context, GoRouterState state) {
                   return const NothingToSeePage();
                 },
@@ -85,7 +87,7 @@ class AppRoutes {
           StatefulShellBranch(
             routes: <RouteBase>[
               GoRoute(
-                path: NavRoutes.notfound.path,
+                path: NavRoutes.notfoundTwo.path,
                 builder: (BuildContext context, GoRouterState state) {
                   return const NothingToSeePage();
                 },

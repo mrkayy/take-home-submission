@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_home/image_constant.dart';
+import 'package:take_home/utils/image_constant.dart';
 import 'package:take_home/presentation/widgets/custom_svg_widget.dart';
 import 'package:take_home/theme/light_theme.dart';
 

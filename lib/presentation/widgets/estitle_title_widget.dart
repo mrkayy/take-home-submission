@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_home/image_constant.dart';
+import 'package:take_home/utils/image_constant.dart';
 import 'package:take_home/presentation/widgets/custom_svg_widget.dart';
 import 'package:take_home/theme/light_theme.dart';
 
@@ -38,14 +38,14 @@ class EstateTileWidget extends StatelessWidget {
       child: Align(
         alignment: Alignment.bottomCenter,
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(60.sp),
+          borderRadius: BorderRadius.circular(48.sp),
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
             child: Container(
               height: 50.h,
               width: double.infinity,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(60.sp),
+                borderRadius: BorderRadius.circular(48.sp),
                 color: appTheme.primary50.withOpacity(0.5),
               ),
               child: Row(
@@ -88,9 +88,11 @@ class EstateTileWidget extends StatelessWidget {
             ),
           ),
         ),
-      )
-          .animate(delay: delay, target: animate ? 1 : 0)
-          .scaleX(alignment: Alignment.centerLeft, begin: 0, end: 1),
+      ).animate(target: animate ? 1 : 0).scaleX(
+          alignment: Alignment.centerLeft,
+          begin: 0,
+          end: 1,
+          curve: Curves.fastOutSlowIn),
     );
   }
 }
