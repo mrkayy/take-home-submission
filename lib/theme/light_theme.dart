@@ -16,15 +16,15 @@ class ThemeHelper {
       colorScheme: colorScheme,
       visualDensity: VisualDensity.standard,
       textTheme: TextThemes.textTheme(colorScheme),
-      primaryColor: AppColors.primary,
-      scaffoldBackgroundColor: AppColors.white,
+      primaryColor: appTheme.primary,
+      scaffoldBackgroundColor: appTheme.white,
       brightness: Brightness.light,
     );
   }
 
   /// Returns the current theme data.
   ThemeData themeData() => _getThemeData();
-  
+
   /// Returns the primary colors for the current theme.
   AppColors themeColor() => AppColors();
 }

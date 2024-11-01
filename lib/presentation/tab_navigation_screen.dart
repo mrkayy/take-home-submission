@@ -1,9 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import "package:flutter/material.dart";
+import "package:flutter_animate/flutter_animate.dart";
 import "package:flutter_screenutil/flutter_screenutil.dart";
 import "package:go_router/go_router.dart";
 import "package:take_home/image_constant.dart";
+import "package:take_home/presentation/widgets/nav_icons.dart";
 import "package:take_home/theme/light_theme.dart";
 
 // class DrawerMenu {
@@ -31,20 +33,20 @@ class TabNavigationScreen extends StatefulWidget {
   State<TabNavigationScreen> createState() => _TabNavigationScreenState();
 }
 
-class _TabNavigationScreenState extends State<TabNavigationScreen>  with SingleTickerProviderStateMixin {
+class _TabNavigationScreenState extends State<TabNavigationScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController animController1 = AnimationController(vsync: this);
 
-  // Tween animate = Tween();
-
-  int currentPageIndex = 2;
-
-  final List<String> _bottomMenuList = [
+  final List<String> _menuListIcon = [
     ImageConstants.searchBold,
     ImageConstants.chat,
     ImageConstants.home,
     ImageConstants.heart,
     ImageConstants.profile,
   ];
+
+  int currentPageIndex = 2;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,51 +71,33 @@ class _TabNavigationScreenState extends State<TabNavigationScreen>  with SingleT
             surfaceTintColor: Colors.transparent,
             elevation: 0,
             labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-            indicatorShape: CircleBorder(),
-            onDestinationSelected: (selected) {
-              setState(() {
-                currentPageIndex = selected;
-              });
-            },
-            destinations: [
-              CustomBottomNavIcon(
-                icon: ImageConstants.searchBold,
+            indicatorShape: const CircleBorder(),
+            destinations: List.generate(_menuListIcon.length, (index) {
+              return CustomBottomNavIcon(
+                icon: _menuListIcon[index],
                 selectedIndex: currentPageIndex,
-                index: 0,
-              ),
-              CustomBottomNavIcon(
-                icon: ImageConstants.chat,
-                selectedIndex: currentPageIndex,
-                index: 1,
-              ),
-              CustomBottomNavIcon(
-                icon: ImageConstants.home,
-                selectedIndex: currentPageIndex,
-                index: 2,
-              ),
-              CustomBottomNavIcon(
-                icon: ImageConstants.heart,
-                selectedIndex: currentPageIndex,
-                index: 3,
-              ),
-              CustomBottomNavIcon(
-                icon: ImageConstants.profile,
-                selectedIndex: currentPageIndex,
-                index: 4,
-              ),
-            ],
-            selectedIndex: currentPageIndex,
+                index: index,
+              );
+            }),
+            onDestinationSelected: (destination) =>
+                _onItemTapped(destination, context),
+            // onDestinationSelected: (selected) {
+            //   setState(() {
+            //     currentPageIndex = selected;
+            //   });
+            // },
+            selectedIndex: widget.navigationShell.currentIndex,
           ),
         ),
-      ).animate(autoPlay: true, delay: const Duration(seconds: 2)).slideY(
+      ).animate(autoPlay: true, delay: 2.seconds).slideY(
           curve: Curves.easeInOut, duration: 7.6.seconds, end: 0.0, begin: 2.0),
     );
   }
 
   void _onItemTapped(int index, BuildContext context) {
-    navigationShell.goBranch(
+    widget.navigationShell.goBranch(
       index,
-      initialLocation: index == navigationShell.currentIndex,
+      initialLocation: index == widget.navigationShell.currentIndex,
     );
   }
 }
