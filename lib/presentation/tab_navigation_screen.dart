@@ -45,49 +45,43 @@ class _TabNavigationScreenState extends State<TabNavigationScreen>
     ImageConstants.profile,
   ];
 
-  int currentPageIndex = 2;
+  // int currentPageIndex;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: widget.navigationShell,
-      bottomNavigationBar: SafeArea(
-        top: false,
-        left: false,
-        right: false,
-        bottom: true,
-        child: Container(
-          height: 60.0.h,
-          margin: EdgeInsets.only(left: 63.0.sp, right: 63.0.sp),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30.0.sp),
-            color: appTheme.gray100,
-          ),
-          child: NavigationBar(
-            indicatorColor: appTheme.primary,
-            backgroundColor: Colors.transparent,
-            shadowColor: Colors.transparent,
-            surfaceTintColor: Colors.transparent,
-            elevation: 0,
-            labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-            indicatorShape: const CircleBorder(),
-            destinations: List.generate(_menuListIcon.length, (index) {
-              return CustomBottomNavIcon(
-                icon: _menuListIcon[index],
-                selectedIndex: currentPageIndex,
-                index: index,
-              );
-            }),
-            onDestinationSelected: (destination) =>
-                _onItemTapped(destination, context),
-            // onDestinationSelected: (selected) {
-            //   setState(() {
-            //     currentPageIndex = selected;
-            //   });
-            // },
-            selectedIndex: widget.navigationShell.currentIndex,
-          ),
+      bottomNavigationBar: Container(
+        height: 60.0.h,
+        margin: EdgeInsets.only(left: 63.0.sp, right: 63.0.sp),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30.0.sp),
+          color: appTheme.gray100,
+        ),
+        child: NavigationBar(
+          indicatorColor: appTheme.primary,
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          elevation: 0,
+          labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+          indicatorShape: const CircleBorder(),
+          destinations: List.generate(_menuListIcon.length, (index) {
+            return CustomBottomNavIcon(
+              icon: _menuListIcon[index],
+              selectedIndex: widget.navigationShell.currentIndex,
+              index: index,
+            );
+          }),
+          onDestinationSelected: (destination) =>
+              _onItemTapped(destination, context),
+          // onDestinationSelected: (selected) {
+          //   setState(() {
+          //     currentPageIndex = selected;
+          //   });
+          // },
+          selectedIndex: widget.navigationShell.currentIndex,
         ),
       ).animate(autoPlay: true, delay: 2.seconds).slideY(
           curve: Curves.easeInOut, duration: 7.6.seconds, end: 0.0, begin: 2.0),
