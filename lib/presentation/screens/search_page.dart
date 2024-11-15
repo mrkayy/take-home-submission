@@ -49,9 +49,10 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
   }
 
   void customMarkerIcon() {
-    BitmapDescriptor.asset(
+    BitmapDescriptor.fromAssetImage(
             const ImageConfiguration(), "assets/img/custom_marker.png")
         .then((icon) {
+      print("$icon");
       setState(() {
         customMarker = icon;
       });
@@ -168,6 +169,7 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
             GoogleMap(
               // mapType: MapType.hybrid,
               myLocationButtonEnabled: false,
+
               initialCameraPosition: _kGooglePlex,
               onMapCreated: (GoogleMapController controller) {
                 infoWindowController.googleMapController = controller;

@@ -63,7 +63,7 @@ class _TabNavigationScreenState extends State<TabNavigationScreen>
             child: SafeArea(
               child: Container(
                 height: 60.0.h,
-                margin: EdgeInsets.only(left: 60.0.r, right: 60.0.r),
+                margin: EdgeInsets.only(left: 0.20.sw, right: 0.20.sw),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.0.sp),
                   color: appTheme.black,
